@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 
 const SimpleInput = (props) => {
@@ -26,6 +26,13 @@ const SimpleInput = (props) => {
 
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
   const nameInputClasses = nameInputIsInvalid? 'form-control invalid' : 'form-control';
+
+  useEffect(()=>{
+    if(enteredNameIsValid){
+      console.log('Name Input is valid!');
+    }
+  }, [enteredNameIsValid]);
+
   return (
     <form onSubmit={formSubmissionHandler}>
       <div className={nameInputClasses}>
