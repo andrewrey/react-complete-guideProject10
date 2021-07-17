@@ -7,6 +7,7 @@ const SimpleInput = (props) => {
       </div>
       <div className="form-actions">
         <button>Submit</button>
+        <h1>test</h1>
       </div>
     </form>
   );
