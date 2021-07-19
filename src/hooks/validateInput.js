@@ -12,6 +12,62 @@ const useValidateInput = () => {
 
   const enteredEmailIsValid = enteredEmail.includes("@");
   const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
+  let formIsValid = false;
+
+  if (enteredNameIsValid && enteredEmailIsValid) {
+    formIsValid = true;
+  }
+
+  const inputChangeHandler = (event) => {
+    switch (event.target.id) {
+      case "name":
+        setEnteredName(event.target.value);
+        console.log("name");
+        break;
+      case "email":
+        setEnteredEmail(event.target.value);
+        console.log("name");
+        break;
+      default:
+        return;
+    }
+  };
+
+  const inputBlurHandler = (event) => {
+    if (event.target.id === "name") {
+      setEnteredNameTouched(true);
+      console.log("name");
+    } else if (event.target.id === "email") {
+      setEnteredEmailTouched(true);
+      console.log("email");
+    }
+  };
+
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
+
+    if (!enteredNameIsValid || !enteredEmailIsValid) {
+      return;
+    }
+    setEnteredName("");
+    setEnteredNameTouched(false);
+    setEnteredEmail("");
+    setEnteredEmailTouched(false);
+  };
+
+  return {
+    nameInputIsInvalid,
+    emailInputIsInvalid,
+    formSubmissionHandler,
+    enteredName,
+    enteredEmail,
+    inputChangeHandler,
+    inputBlurHandler,
+    formIsValid,
+  };
 };
 
 export default useValidateInput;
