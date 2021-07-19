@@ -20,14 +20,13 @@ const useValidateInput = () => {
   }
 
   const inputChangeHandler = (event) => {
+    console.log(event.target);
     switch (event.target.id) {
       case "name":
         setEnteredName(event.target.value);
-        console.log("name");
         break;
       case "email":
         setEnteredEmail(event.target.value);
-        console.log("name");
         break;
       default:
         return;
@@ -37,10 +36,8 @@ const useValidateInput = () => {
   const inputBlurHandler = (event) => {
     if (event.target.id === "name") {
       setEnteredNameTouched(true);
-      console.log("name");
     } else if (event.target.id === "email") {
       setEnteredEmailTouched(true);
-      console.log("email");
     }
   };
 

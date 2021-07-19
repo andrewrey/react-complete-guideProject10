@@ -86,7 +86,7 @@ const SimpleInput = (props) => {
           onBlur={inputBlurHandler}
         />
         {emailInputIsInvalid && (
-          <p className="error-text">Name must not be empty</p>
+          <p className="error-text">email must not be empty</p>
         )}
       </div>
       <div className="form-actions">
