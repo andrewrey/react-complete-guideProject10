@@ -20,7 +20,6 @@ const useValidateInput = () => {
   }
 
   const inputChangeHandler = (event) => {
-    console.log(event.target);
     switch (event.target.id) {
       case "name":
         setEnteredName(event.target.value);
