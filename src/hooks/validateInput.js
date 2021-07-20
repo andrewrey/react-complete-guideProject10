@@ -12,15 +12,13 @@ const inputReducer = (state, action) => {
     case "BLUR":
       return { value: state.value, isTouched: true };
     case "RESET":
-      return { ...initialState };
+      return { value: "", isTouched: false };
     default:
       return initialState;
   }
 };
 
 const useValidateInput = (validation) => {
-  // const [inputValue, setInputValue] = useState("");
-  // const [inputTouched, setInputTouched] = useState(false);
   const [inputState, inputStateDispatch] = useReducer(
     inputReducer,
     initialState
@@ -42,7 +40,7 @@ const useValidateInput = (validation) => {
   };
 
   return {
-    input: inputState.value,
+    inputValue: inputState.value,
     isValid,
     invalidValue,
     inputValueHandler,
