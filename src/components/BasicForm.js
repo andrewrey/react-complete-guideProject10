@@ -28,19 +28,23 @@ const BasicForm = (props) => {
     resetInput: emailResetInput,
   } = useValidateInput((data) => data.includes("@"));
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-
-    fNameResetInput();
-    lNameResetInput();
-    emailResetInput();
-  };
-
   let formIsValid = false;
 
   if (fNameIsValid && lNameIsValid && emailIsValid) {
     formIsValid = true;
   }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
+
+    fNameResetInput();
+    lNameResetInput();
+    emailResetInput();
+  };
   const firstNameClasses = inValidFName
     ? "form-control invalid"
     : "form-control";
@@ -63,6 +67,7 @@ const BasicForm = (props) => {
             value={fName}
             onChange={fNameValueHandler}
           />
+          {inValidFName && <p className="error-text">Must be not left blank</p>}
         </div>
         <div className={lastNameClasses}>
           <label htmlFor="last-name">Last Name</label>
@@ -73,6 +78,7 @@ const BasicForm = (props) => {
             value={lName}
             onChange={lNameValueHandler}
           />
+          {inValidLName && <p className="error-text">Must be not left blank</p>}
         </div>
       </div>
       <div className={emailClasses}>
@@ -84,6 +90,9 @@ const BasicForm = (props) => {
           value={emailEntered}
           onChange={emailValueHandler}
         />
+        {inValidEmail && (
+          <p className="error-text">Must be a valid email address.</p>
+        )}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
