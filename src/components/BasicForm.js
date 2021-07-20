@@ -32,8 +32,15 @@ const BasicForm = (props) => {
     event.preventDefault();
 
     fNameResetInput();
+    lNameResetInput();
+    emailResetInput();
   };
 
+  let formIsValid = false;
+
+  if (fNameIsValid && lNameIsValid && emailIsValid) {
+    formIsValid = true;
+  }
   const firstNameClasses = inValidFName
     ? "form-control invalid"
     : "form-control";
@@ -79,7 +86,7 @@ const BasicForm = (props) => {
         />
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
