@@ -44,8 +44,6 @@ const BasicForm = (props) => {
 
   const emailClasses = inValidEmail ? "form-control invalid" : "form-control";
 
-  console.log(firstNameClasses);
-
   return (
     <form onSubmit={onSubmitHandler}>
       <div className="control-group">
@@ -61,12 +59,24 @@ const BasicForm = (props) => {
         </div>
         <div className={lastNameClasses}>
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" />
+          <input
+            type="text"
+            id="last-name"
+            onBlur={lNameOnBlurHandler}
+            value={lName}
+            onChange={lNameValueHandler}
+          />
         </div>
       </div>
       <div className={emailClasses}>
         <label htmlFor="email">E-Mail Address</label>
-        <input type="text" id="email" />
+        <input
+          type="text"
+          id="email"
+          onBlur={emailOnBlurHandler}
+          value={emailEntered}
+          onChange={emailValueHandler}
+        />
       </div>
       <div className="form-actions">
         <button>Submit</button>
